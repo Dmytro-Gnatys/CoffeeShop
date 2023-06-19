@@ -1,0 +1,78 @@
+h2 {
+    padding-top: 30px;
+    text-align: center;
+    color: whitesmoke;
+}
+
+.ourcoffee {
+    width: 100%;
+    height: 260px;
+    background: url('../assets/img/coffee_shop_bg.png') center (center/cover) no-repeat;
+}
+
+.about {
+    margin: 170px auto 100px;
+    width: 800px;
+    height: 355px;
+    &_wrapper {
+        display: flex;
+        justify-content: space-evenly;
+    }
+    &_item {
+        &_img {
+            img {
+                width: 250px;
+            }
+        }
+        &_text {
+            &-title {
+                text-align: center;
+            }
+            &-country {
+                font-weight: bold;
+                padding: 30px 40px 20px 40px;
+                font-size: 14px;
+            }
+            &-descr {
+                padding: 0px 0px 20px 40px;
+                font-size: 14px;
+            }
+            &-price {
+                padding-top: 7px;
+                font-weight: bold;
+                font-size: 14px;
+            }
+            &-buy {
+                width: 200px;
+                margin: 0 auto;
+                display: flex;
+                justify-content: space-evenly;
+            }
+            &-btn {
+                display: flex;
+                justify-content: space-between;
+                width: 80px;
+                height: 35px;
+                border-radius: 5px;
+                border: 1px solid;
+                font-weight: 500;
+                font-size: 14px;
+                text-align: center;
+                background-color: brown;
+                img {
+                    width: 30px;
+                    padding: 5px;
+                }
+                &-link {
+                    padding: 5px;
+                    color: whitesmoke;
+                    text-decoration: none;
+                    
+                }
+                a:hover {
+                    text-decoration: underline;
+                  }
+            }
+        }
+    }
+}

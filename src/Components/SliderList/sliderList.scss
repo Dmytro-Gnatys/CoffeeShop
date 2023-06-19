@@ -1,0 +1,43 @@
+.ourbeens {
+    &_shop {
+        display: flex;
+        width: 850px;
+        &_slide {
+            display: none;
+                
+            &_active {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 50px;
+                transition: 1s all;
+            }
+            &_wrapper {
+                display: grid;
+                justify-content: center;
+                grid-template: repeat(2, 260px)/repeat(3, 208px);
+                row-gap: 40px;
+                column-gap: 40px;
+            }
+        }
+        &_item {
+            border-radius: 8px;
+            background: rgba(255, 240, 230, 0.65);
+            font-size: 14px;
+        }
+       
+        &-left {
+            cursor: pointer;
+            align-self: center;
+            img {
+                width: 20px;
+            }
+        }
+        &-right {
+            cursor: pointer;
+            align-self: center;
+            img {
+                width: 20px;
+            }
+        }
+    }
+}

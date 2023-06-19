@@ -1,0 +1,39 @@
+.ourbeens_shop_item {
+        &-inner {
+            width: 50px;
+            height: 30px;
+            padding-top: 5px;
+            border-radius: 5px;
+            border: 1px solid;
+            font-weight: 500;
+            font-size: 14px;
+            text-align: center;
+            color: black;
+            &__link {
+                color: red;
+                text-decoration: none;
+            }
+        }
+        a:hover {
+            text-decoration: underline;
+          }
+            
+        &-img {
+            padding: 20px;
+            text-align: center;
+        }
+        &-desc {
+            text-align: right;
+            padding-right: 7px;
+        }
+        &-country {
+            padding: 5px 7px;
+            text-align: right;
+        }
+        &-price {
+            display: flex;
+            justify-content: space-between;
+            padding: 5px 7px;
+            text-align: right;
+        }
+    }

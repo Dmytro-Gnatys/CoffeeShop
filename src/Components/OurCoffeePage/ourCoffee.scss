@@ -1,0 +1,103 @@
+
+h2 {
+    padding-top: 30px;
+    text-align: center;
+    color: whitesmoke;
+}
+
+.ourcoffee {
+    width: 100%;
+    height: 260px;
+    background: url('../assets/img/coffee_shop_bg.png') center (center/cover) no-repeat;
+}
+
+.ourbeens {
+    margin: 170px auto 100px;
+    width: 800px;
+    height: 355px;
+    &_wrapper {
+        display: flex;
+        justify-content: space-evenly;
+    }
+    p {
+        margin-top: 20px;
+    }
+    &_item {
+        &_about {
+            text-align: center;
+            padding-left: 60px;
+        }
+    }
+    &_border {
+        margin: 50px auto;
+        width: 200px;
+        height: 2px;
+        color: black;
+        border: 1px solid #000;
+        align-self: center;
+    }
+
+    &_shop {
+        display: flex;
+        width: 850px;
+        &_slide {
+            display: none;
+                
+            &_active {
+                display: flex;
+                justify-content: space-between;
+                margin-top: 50px;
+                transition: 1s all;
+            }
+            &_wrapper {
+                display: grid;
+                justify-content: center;
+                grid-template: repeat(2, 260px)/repeat(3, 208px);
+                row-gap: 40px;
+                column-gap: 40px;
+            }
+        }
+       
+        &-left {
+            cursor: pointer;
+            align-self: center;
+            img {
+                width: 20px;
+            }
+        }
+        &-right {
+            cursor: pointer;
+            align-self: center;
+            img {
+                width: 20px;
+            }
+        }
+        &_item {
+            text-align: center;
+            border-radius: 8px;
+            background: rgba(255, 240, 230, 0.65);
+            box-shadow: 6px 6px 3px rgba(0, 0, 0, 0.2);
+            font-size: 14px;
+            &-img {
+                width: 185px;
+                padding: 20px;
+                text-align: center;
+            }
+            &-desc {
+                font-weight: bold;
+                font-size: 16px;
+                text-align: right;
+                padding-right: 7px;
+            }
+            &-country {
+                padding: 5px 7px;
+                text-align: right;
+            }
+            &-price {
+                padding: 5px 7px;
+                text-align: right;
+            }
+        }
+    }
+}
+

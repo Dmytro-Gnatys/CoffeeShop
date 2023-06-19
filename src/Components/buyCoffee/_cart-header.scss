@@ -1,0 +1,26 @@
+.cart-header {
+    display: grid;
+    grid-template-columns: 100px 250px 83px 55px;
+    column-gap: 20px;
+
+    padding: 10px 0;
+    background-color: #EAEFF2;
+
+    font-weight: 700;
+    font-size: 13px;
+    line-height: 1.2;
+    letter-spacing: 0.2em;
+    text-align: center;
+
+    @media (max-width: $mobile) {
+        height: 1px;
+        padding: 0;
+        & > * {
+            display: none;
+        }
+    }
+}
+
+.cart-header__title {
+    grid-column-start: 2;
+}

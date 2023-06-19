@@ -1,0 +1,17 @@
+.coffeeline {
+    &_wrapper {
+        margin-top: 20px;
+        display: flex;
+        justify-content: center;
+    }
+    &_border {
+        width: 60px;
+        height: 2px;
+        color: black;
+        border: 1px solid #000;
+        align-self: center;
+    }
+    &_img {
+        margin: 0 20px;
+    }
+}

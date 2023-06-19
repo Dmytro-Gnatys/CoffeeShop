@@ -1,0 +1,38 @@
+
+.header {
+    &_wreapper {
+        display: flex;
+        justify-content: space-between;
+        padding: 40px 90px;
+    }
+    &_menu {
+        width: 500px;
+        display: flex;
+        justify-content: space-evenly;
+        list-style: none;
+        &_item {
+            font-family: 'Merienda';
+            font-weight: 400;
+            font-size: 12px;
+        }
+        img {
+            width: 35px;
+            height: 35px;
+        }
+        &_basket {
+            img {
+                width: 35px;
+            }
+        }
+        &_link {
+            color:aliceblue;
+        text-decoration: none;
+        cursor: pointer;
+        }
+        :hover {
+            a {
+                text-decoration: underline;
+            }
+        }
+    }
+}
