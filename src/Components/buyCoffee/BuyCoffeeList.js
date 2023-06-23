@@ -1,17 +1,19 @@
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import "./main.scss";
-import useCart from "../../Hooks/useCart";
+import { useDispatch, useSelector } from "react-redux";
+import { updateCart } from "../../features/cart";
 
 const BuyCoffeeList = (props) => {
-  const { cartItems, add, remove } = useCart();
+  const cart = useSelector((state) => state.cart.cart);
+  const dispatch = useDispatch();
 
-  console.log(props);
   const handleDelete = () => {
-    const removedItems = cartItems.filter((el) => el.id !== props.id);
-    remove(removedItems);
+    const removedItems = cart.filter((el) => el.id !== props.id);
+
+    localStorage.setItem("cartData", JSON.stringify(removedItems));
+    dispatch(updateCart(removedItems));
   };
 
-  console.log(cartItems);
   // const handleCountUp = () => {
   //     props.onCountUp(props.id);
   //   };

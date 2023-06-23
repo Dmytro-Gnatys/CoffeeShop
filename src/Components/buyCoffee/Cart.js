@@ -2,31 +2,14 @@ import { Link, useParams } from "react-router-dom";
 
 import AppHeader from "../AppHeader/AppHeader";
 import BuyCoffeeList from "./BuyCoffeeList";
-import useCart from "../../Hooks/useCart";
+/* import useCart from "../../Hooks/useCart"; */
 
 import "./main.scss";
+import { useSelector } from "react-redux";
 
 const Cart = (props) => {
-  const { cartItems, add } = useCart();
-
-  /*     useEffect(() => {
-    add(coffeeId, defsultValues);
-  }, []);
- */
-
-  //   useEffect(() => {
-  //     // Логика фильтрации и проверки наличия элемента
-  //     const newItem = defsultValues.filter(coffee => coffee.id === Number(coffeeId));
-  //     const coffeeExists = cartItems.find(item => item.id === Number(coffeeId));
-
-  //     // Вызов функции add
-  //     if (newItem !== coffeeExists) {
-  //         add(newItem);
-  //       }
-
-  //     // eslint-disable-next-line
-  //   }, [coffeeId]);
-
+  const cart = useSelector((state) => state.cart.cart);
+  console.log(cart);
   return (
     <section className="section-cart">
       <div className="ourcoffee">
@@ -42,9 +25,9 @@ const Cart = (props) => {
               <div className="cart-header__cost">Price</div>
             </header>
 
-            {cartItems.length ? (
+            {cart?.length ? (
               <div>
-                {cartItems.map((item) => (
+                {cart?.map((item) => (
                   <BuyCoffeeList key={item.id} {...item} />
                 ))}
               </div>

@@ -1,6 +1,5 @@
 import { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
-import CartProvider from "../../Contexts/Cart.context";
 
 import dalmar from "../assets/img/dalmar.jpeg";
 import gimoka from "../assets/img/gimoka.jpeg";
@@ -14,18 +13,30 @@ import merilld from "../assets/img/merilld.jpeg";
 import paulig from "../assets/img/paulig.jpeg";
 import starbucks from "../assets/img/starbucks.jpeg";
 import thibo from "../assets/img/thibo.jpeg";
-
 import MainPage from "../MainPage/MainPage";
 import OurCoffee from "../OurCoffeePage/OurCoffee";
 import AboutIt from "../AboutIt/aboutIt";
-// import BuyCoffee from "../buyCoffee/BuyCoffee";
 import Cart from "../buyCoffee/Cart";
 
 import "../../style/style.scss";
+import { useEffect } from "react";
+import { useDispatch } from "react-redux";
+import { updateCart } from "../../features/cart";
+import AppHeader from "../AppHeader/AppHeader";
 
 const Page404 = lazy(() => import("../Page404/404"));
 
 const App = () => {
+  const dispatch = useDispatch();
+  const checkLocalStorrage = () => {
+    const storedValue = JSON.parse(localStorage.getItem("cartData"));
+    if (storedValue) dispatch(updateCart(storedValue));
+  };
+
+  useEffect(() => {
+    checkLocalStorrage();
+  }, []);
+
   const defsultValues = [
     {
       name: "Dallmayr",
@@ -90,28 +101,26 @@ const App = () => {
   ];
 
   return (
-    <CartProvider>
-      <Router>
-        <main className="app">
-          <Routes>
-            <Route path="/" element={<MainPage />} />
-            <Route
-              path="/coffee"
-              element={<OurCoffee defsultValues={defsultValues} />}
-            />
-            <Route
-              path="/coffee/:coffeeId"
-              element={<AboutIt defsultValues={defsultValues} />}
-            />
-            <Route
-              path="/coffee/:coffeeId/buy"
-              element={<Cart defsultValues={defsultValues} />}
-            />
-            <Route path="*" element={<Page404 />} />
-          </Routes>
-        </main>
-      </Router>
-    </CartProvider>
+    <Router>
+      <main className="app">
+        <Routes>
+          <Route path="/" element={<MainPage />} />
+          <Route
+            path="/coffee"
+            element={<OurCoffee defsultValues={defsultValues} />}
+          />
+          <Route
+            path="/coffee/:coffeeId"
+            element={<AboutIt defsultValues={defsultValues} />}
+          />
+          <Route
+            path="/coffee/:coffeeId/buy"
+            element={<Cart defsultValues={defsultValues} />}
+          />
+          <Route path="*" element={<Page404 />} />
+        </Routes>
+      </main>
+    </Router>
   );
 };
 

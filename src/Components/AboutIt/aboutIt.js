@@ -1,20 +1,32 @@
-import { Link, useParams } from "react-router-dom";
+import { Link, useNavigate, useParams } from "react-router-dom";
 
 import AppHeader from "../AppHeader/AppHeader";
 import AppFooter from "../AppFooter/appFooter";
 import CoffeeLine from "../CoffeeLine/CoffeeLine";
 import basket from "../assets/icon/pngwing.png";
+import { updateCart } from "../../features/cart";
 
 import "./aboutIt.scss";
-import useCart from "../../Hooks/useCart";
+import { useDispatch, useSelector } from "react-redux";
+import { useEffect } from "react";
 
 const AboutIt = ({ defsultValues }) => {
   const { coffeeId } = useParams();
-  const { cartItems, add } = useCart();
+  const cart = useSelector((state) => state.cart.cart);
+  const navigate = useNavigate();
 
-  // мы достаем именно переменную defsultValues из пропсов, это должна быть реальная переменная
-
+  const dispatch = useDispatch();
   const selected = defsultValues.find((item) => item.id === Number(coffeeId));
+
+  useEffect(() => {
+    if (!selected) navigate("/");
+  }, []);
+  const addToCart = () => {
+    const newCartItems = [...cart, selected];
+    localStorage.setItem("cartData", JSON.stringify(newCartItems));
+    dispatch(updateCart(newCartItems));
+  };
+
   console.log("RENDER");
 
   return (
@@ -44,9 +56,7 @@ const AboutIt = ({ defsultValues }) => {
               </div>
               <div className="about_item_text-btn">
                 <Link
-                  onClick={() => {
-                    add(selected, defsultValues);
-                  }}
+                  onClick={addToCart}
                   to={`/coffee/${selected ? selected.id : ""}/buy`}
                   className="about_item_text-btn-link"
                 >
