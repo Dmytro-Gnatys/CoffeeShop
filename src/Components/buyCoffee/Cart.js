@@ -1,15 +1,17 @@
-import { Link, useParams } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 import AppHeader from "../AppHeader/AppHeader";
+import AppFooter from "../AppFooter/appFooter";
 import BuyCoffeeList from "./BuyCoffeeList";
-/* import useCart from "../../Hooks/useCart"; */
 
-import "./main.scss";
 import { useSelector } from "react-redux";
+import "./main.scss";
 
 const Cart = (props) => {
   const cart = useSelector((state) => state.cart.cart);
-  console.log(cart);
+//достаем cart из Redux-хранилища и сипользуем в рендере
+
+  
   return (
     <section className="section-cart">
       <div className="ourcoffee">
@@ -28,11 +30,11 @@ const Cart = (props) => {
             {cart?.length ? (
               <div>
                 {cart?.map((item) => (
-                  <BuyCoffeeList key={item.id} {...item} />
+                  <BuyCoffeeList key={item.id} {...item}/>
                 ))}
               </div>
             ) : (
-              <p>No items selected</p>
+              <p className="cart-footer-none">No items selected</p>
             )}
             <footer className="cart-footer">
               <div className="cart-footer__count">3 units</div>
@@ -46,6 +48,7 @@ const Cart = (props) => {
           </section>
         </div>
       </div>
+      <AppFooter/>
     </section>
   );
 };

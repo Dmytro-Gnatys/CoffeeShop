@@ -14,7 +14,7 @@ const MainPage = () => {
    
     return (
         <div className="main">
-            <AppHeader/>
+           <AppHeader/> 
             <h1>Everything You Love About Coffee</h1>
             <div className="main_wrapper">
                 <div className="main_border"></div>

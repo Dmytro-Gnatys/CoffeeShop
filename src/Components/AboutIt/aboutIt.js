@@ -5,29 +5,35 @@ import AppFooter from "../AppFooter/appFooter";
 import CoffeeLine from "../CoffeeLine/CoffeeLine";
 import basket from "../assets/icon/pngwing.png";
 import { updateCart } from "../../features/cart";
-
-import "./aboutIt.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
+
+import "./aboutIt.scss";
 
 const AboutIt = ({ defsultValues }) => {
   const { coffeeId } = useParams();
   const cart = useSelector((state) => state.cart.cart);
+  //достаем cart из Redux-хранилища. Значение cart получается из свойства cart объекта состояния state.cart.
   const navigate = useNavigate();
 
   const dispatch = useDispatch();
+  //dispatch будет использоваться для отправки действия updateCart в Redux-хранилище.
   const selected = defsultValues.find((item) => item.id === Number(coffeeId));
 
   useEffect(() => {
     if (!selected) navigate("/");
   }, []);
+  
   const addToCart = () => {
     const newCartItems = [...cart, selected];
     localStorage.setItem("cartData", JSON.stringify(newCartItems));
     dispatch(updateCart(newCartItems));
   };
+//addToCart выполняется при нажатии на кнопку "Buy"
+//внутри функции создается новый массив newCartItems, который содержит текущий cart и выбранный товар selected
+//затем новый массив newCartItems сохраняется в локальное хранилище localStorage
+//и отправляется в Redux-хранилище с помощью функции dispatch(updateCart(newCartItems))
 
-  console.log("RENDER");
 
   return (
     <div className="ourcoffee">

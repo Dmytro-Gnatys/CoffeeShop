@@ -1,7 +1,7 @@
-import { useState } from "react";
-import "./main.scss";
 import { useDispatch, useSelector } from "react-redux";
 import { updateCart } from "../../features/cart";
+
+import "./main.scss";
 
 const BuyCoffeeList = (props) => {
   const cart = useSelector((state) => state.cart.cart);
@@ -14,26 +14,32 @@ const BuyCoffeeList = (props) => {
     dispatch(updateCart(removedItems));
   };
 
-  // const handleCountUp = () => {
-  //     props.onCountUp(props.id);
-  //   };
+  const handleCountUp = () => {
+    const updatedCartUp = cart.map((item) => {
+      if (item.id === props.id) {
+        return { ...item, count: (item.count || 0) + 1 };
+      }
+      return item;
+    });
+    console.log(updatedCartUp);
+  
+    localStorage.setItem("cartData", JSON.stringify(updatedCartUp));
+    dispatch(updateCart(updatedCartUp));
+  };
 
-  //   const handleCountDown = () => {
-  //     props.onCountDown(props.id);
-  //   };
 
   // функция для работы счетчика
-  const [count, setCount] = useState(1);
+  // const [count, setCount] = useState(1);
 
-  const handleCountUp = () => {
-    setCount((prevCount) => prevCount + 1);
-  };
+  // const handleCountUp = () => {
+  //   setCount((prevCount) => prevCount + 1);
+  // };
 
-  const handleCountDown = () => {
-    if (count > 1) {
-      setCount((prevCount) => prevCount - 1);
-    }
-  };
+  // const handleCountDown = () => {
+  //   if (count > 1) {
+  //     setCount((prevCount) => prevCount - 1);
+  //   }
+  // };
 
   return (
     <section className="product">
@@ -51,8 +57,9 @@ const BuyCoffeeList = (props) => {
               className="count__input"
               min="1"
               max="100" /* value={count} */
+              value={props.count}
               defaultValue={1}
-              onChange={(e) => setCount(e.target.value)}
+              // onChange={(e) => setCount(e.target.value)}
             />
           </div>
           <div className="count__controls">
@@ -77,7 +84,7 @@ const BuyCoffeeList = (props) => {
             <button
               type="button"
               className="count__down"
-              onClick={handleCountDown}
+              // onClick={handleCountDown}
             >
               <svg
                 width="14"
