@@ -1,7 +1,6 @@
 import { useState, useCallback } from "react";
 import girl from "../assets/img/girl.jpg";
 
-import AppHeader from "../AppHeader/AppHeader";
 import AppFooter from "../AppFooter/appFooter";
 import CoffeeLine from "../CoffeeLine/CoffeeLine";
 import AppFilter from "../AppFilter/appFilter";
@@ -82,7 +81,6 @@ const OurCoffee = ({ defsultValues }) => {
 
   return (
     <div className="ourcoffee">
-      <AppHeader />
       <h2>Our Coffee</h2>
       <div className="ourbeens">
         <div className="ourbeens_wrapper">
@@ -122,7 +120,7 @@ const OurCoffee = ({ defsultValues }) => {
         </div>
         <SliderList data={visibleData} />
       </div>
-      <AppFooter />
+      <AppFooter/>
     </div>
   );
 };

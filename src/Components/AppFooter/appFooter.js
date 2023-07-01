@@ -18,7 +18,7 @@ const AppFooter = () => {
                         <Link to="/coffee" className="menu_link">Our coffee</Link>
                     </li>
                     <li className="footer_menu_item">
-                        <Link to="/coffee/:coffeeId" className="menu_link">Coffee house</Link>
+                    <Link to="/coffee/:coffeeId/buy" className="header_menu_link">Shopping List</Link>
                     </li>
                 </ul>
             </div>

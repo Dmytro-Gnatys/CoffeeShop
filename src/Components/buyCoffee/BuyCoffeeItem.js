@@ -1,9 +1,10 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useState } from "react";
 import { updateCart } from "../../features/cart";
 
 import "./main.scss";
 
-const BuyCoffeeList = (props) => {
+const BuyCoffeeItem = (props) => {
   const cart = useSelector((state) => state.cart.cart);
   const dispatch = useDispatch();
 
@@ -14,6 +15,14 @@ const BuyCoffeeList = (props) => {
     dispatch(updateCart(removedItems));
   };
 
+  const [count, setCount] = useState(props.count || 1); 
+  // Используем useState для управления состоянием поля ввода
+
+  const handleCountChange = (e) => {
+    const newCount = parseInt(e.target.value, 10);
+    setCount(newCount); // Обновляем состояние поля ввода при изменении значения
+  };
+
   const handleCountUp = () => {
     const updatedCartUp = cart.map((item) => {
       if (item.id === props.id) {
@@ -21,25 +30,29 @@ const BuyCoffeeList = (props) => {
       }
       return item;
     });
-    console.log(updatedCartUp);
   
     localStorage.setItem("cartData", JSON.stringify(updatedCartUp));
     dispatch(updateCart(updatedCartUp));
+    setCount(count + 1); // Обновляем состояние поля ввода
   };
 
-
-  // функция для работы счетчика
-  // const [count, setCount] = useState(1);
-
-  // const handleCountUp = () => {
-  //   setCount((prevCount) => prevCount + 1);
-  // };
-
-  // const handleCountDown = () => {
-  //   if (count > 1) {
-  //     setCount((prevCount) => prevCount - 1);
-  //   }
-  // };
+  const handleCountDown = () => {
+    if (props.count <= 1) {
+      return; 
+    }
+    const updatedCartDown = cart.map((item) => {
+      if (item.id === props.id) {
+        return { ...item, count: (item.count || 0) - 1 };
+      }
+      return item;
+    });
+  
+    localStorage.setItem("cartData", JSON.stringify(updatedCartDown));
+    dispatch(updateCart(updatedCartDown));
+    setCount(count - 1); // Обновляем состояние поля ввода
+  };
+  
+  
 
   return (
     <section className="product">
@@ -56,10 +69,9 @@ const BuyCoffeeList = (props) => {
               type="number"
               className="count__input"
               min="1"
-              max="100" /* value={count} */
-              value={props.count}
-              defaultValue={1}
-              // onChange={(e) => setCount(e.target.value)}
+              max="100" 
+              value={count}
+              onChange={handleCountChange}
             />
           </div>
           <div className="count__controls">
@@ -84,7 +96,8 @@ const BuyCoffeeList = (props) => {
             <button
               type="button"
               className="count__down"
-              // onClick={handleCountDown}
+              onClick={handleCountDown}
+              
             >
               <svg
                 width="14"
@@ -138,4 +151,4 @@ const BuyCoffeeList = (props) => {
   );
 };
 
-export default BuyCoffeeList;
+export default BuyCoffeeItem;

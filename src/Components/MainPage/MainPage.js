@@ -4,31 +4,29 @@ import coffee from "../assets/icon/Vector3.png";
 import isla from "../assets/img/isla.jpeg";
 import itierra from "../assets/img/itierra.jpeg";
 import lavazza from "../assets/img/lavazza.jpeg";
-import AppHeader from '../AppHeader/AppHeader';
-import AppFooter from '../AppFooter/appFooter';
 import CoffeeLine from "../CoffeeLine/CoffeeLine";
+import AppFooter from "../AppFooter/appFooter";
 
 import './mainPage.scss';
 
 const MainPage = () => {
    
     return (
-        <div className="main">
-           <AppHeader/> 
+        <div className="mainhome">
             <h1>Everything You Love About Coffee</h1>
-            <div className="main_wrapper">
-                <div className="main_border"></div>
-                <div className="main_img">
-                    <img src={coffee} alt="coffee" className="main_img__coffee" />
+            <div className="mainhome_wrapper">
+                <div className="mainhome_border"></div>
+                <div className="mainhome_img">
+                    <img src={coffee} alt="coffee" className="mainhome_img__coffee" />
                 </div>
-                <div className="main_border"></div>
+                <div className="mainhome_border"></div>
             </div>
-            <div className="main_descr">
+            <div className="mainhome_descr">
                 <p>We makes every day full of energy and taste</p>
                 <p>Want to try our beans?</p>
             </div>
-            <div className="main_button">
-                <Link to="/coffee" className="main_button__link">More</Link>
+            <div className="mainhome_button">
+                <Link to="/coffee" className="mainhome_button__link">More</Link>
             </div>
             <div className="about">
                 <h3 className="about_title">About us</h3>
@@ -80,7 +78,6 @@ const MainPage = () => {
             </div>
             <AppFooter/>
         </div>
-        
     )
 }
 

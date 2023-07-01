@@ -1,6 +1,5 @@
 import { Link, useNavigate, useParams } from "react-router-dom";
 
-import AppHeader from "../AppHeader/AppHeader";
 import AppFooter from "../AppFooter/appFooter";
 import CoffeeLine from "../CoffeeLine/CoffeeLine";
 import basket from "../assets/icon/pngwing.png";
@@ -21,13 +20,16 @@ const AboutIt = ({ defsultValues }) => {
   const selected = defsultValues.find((item) => item.id === Number(coffeeId));
 
   useEffect(() => {
-    if (!selected) navigate("/");
+    if (!selected) navigate("/")
   }, []);
   
   const addToCart = () => {
-    const newCartItems = [...cart, selected];
-    localStorage.setItem("cartData", JSON.stringify(newCartItems));
-    dispatch(updateCart(newCartItems));
+    const coffeeExists = cart.find(item => item.id === Number(coffeeId));
+      if (!coffeeExists) {
+        const newCartItems = [...cart, selected];
+          localStorage.setItem("cartData", JSON.stringify(newCartItems));
+          dispatch(updateCart(newCartItems));
+    }
   };
 //addToCart выполняется при нажатии на кнопку "Buy"
 //внутри функции создается новый массив newCartItems, который содержит текущий cart и выбранный товар selected
@@ -37,7 +39,6 @@ const AboutIt = ({ defsultValues }) => {
 
   return (
     <div className="ourcoffee">
-      <AppHeader />
       <h2>Our Coffee</h2>
       <div className="about">
         <div className="about_wrapper">

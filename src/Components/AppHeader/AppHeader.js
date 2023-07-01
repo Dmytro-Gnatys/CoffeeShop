@@ -5,7 +5,10 @@ import basket from "../assets/icon/pngwing.png";
 
 import "./appHeader.scss";
 
-const AppHeader = () => {
+const AppHeader = ({ cartLength }) => {
+
+
+
   return (
     <nav>
       <div className="header_wreapper">
@@ -22,12 +25,13 @@ const AppHeader = () => {
             </Link>
           </li>
           <li className="header_menu_item">
-            <Link to="/coffee/:coffeeId" className="header_menu_link">
-              Coffee house
+            <Link to="/coffee/:coffeeId/buy" className="header_menu_link">
+              Shopping List
             </Link>
           </li>
         </ul>
         <div className="header_menu_basket">
+          <div class="header_menu_basket_circle">{ cartLength }</div>
           <Link to="/coffee/:coffeeId/buy">
             <img src={basket} alt="basket" className="menu_basket__icon" />
           </Link>

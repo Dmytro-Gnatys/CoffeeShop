@@ -1,5 +1,6 @@
 import { Suspense, lazy } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import dalmar from "../assets/img/dalmar.jpeg";
 import gimoka from "../assets/img/gimoka.jpeg";
@@ -17,6 +18,8 @@ import MainPage from "../MainPage/MainPage";
 import OurCoffee from "../OurCoffeePage/OurCoffee";
 import AboutIt from "../AboutIt/aboutIt";
 import Cart from "../buyCoffee/Cart";
+import AppHeader from "../AppHeader/AppHeader";
+
 
 import "../../style/style.scss";
 import { useEffect } from "react";
@@ -51,9 +54,12 @@ const App = () => {
     {name: "Thibo", country: "Kenya", price: "5.99", images: thibo, id: 12 }
   ];
 
+  const cart = useSelector((state) => state.cart.cart);
+
   return (
     
     <Router>
+      <AppHeader cartLength={cart.length} />
       <main className="app">
         <Routes>
           <Route path="/" element={<MainPage />} />
@@ -73,6 +79,7 @@ const App = () => {
         </Routes>
       </main>
     </Router>
+    
   );
 };
 
