@@ -5,19 +5,22 @@ import BuyCoffeeItem from "./BuyCoffeeItem";
 
 import { useSelector } from "react-redux";
 import "./main.scss";
+import { useEffect } from "react";
 
 const Cart = () => {
   const cart = useSelector((state) => state.cart.cart);
-//достаем cart из Redux-хранилища и сипользуем в рендере
+  //достаем cart из Redux-хранилища и сипользуем в рендере
 
-const calculateTotalPrice = () => {
-  let totalPrice = 0;
+  const calculateTotalPrice = () => {
+    let totalPrice = 0;
     cart.forEach((item) => {
-    totalPrice += item.price * (item.count >=1 ? item.count : 1);
+      totalPrice += item.price * (item.count >= 1 ? item.count : 1);
+    });
+    return totalPrice.toFixed(2);
+  };
+  useEffect(() => {
+    console.log(1);
   });
-  return totalPrice.toFixed(2);
-};
-
 
   return (
     <section className="section-cart">
@@ -36,7 +39,7 @@ const calculateTotalPrice = () => {
             {cart?.length ? (
               <div>
                 {cart?.map((item) => (
-                  <BuyCoffeeItem key={item.id} {...item}/>
+                  <BuyCoffeeItem key={item.id} {...item} />
                 ))}
               </div>
             ) : (
@@ -54,7 +57,7 @@ const calculateTotalPrice = () => {
           </section>
         </div>
       </div>
-      <AppFooter/>
+      <AppFooter />
     </section>
   );
 };

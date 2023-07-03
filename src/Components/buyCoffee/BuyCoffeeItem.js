@@ -15,7 +15,7 @@ const BuyCoffeeItem = (props) => {
     dispatch(updateCart(removedItems));
   };
 
-  const [count, setCount] = useState(props.count || 1); 
+  const [count, setCount] = useState(props.count || 1);
   // Используем useState для управления состоянием поля ввода
 
   const handleCountChange = (e) => {
@@ -30,7 +30,7 @@ const BuyCoffeeItem = (props) => {
       }
       return item;
     });
-  
+
     localStorage.setItem("cartData", JSON.stringify(updatedCartUp));
     dispatch(updateCart(updatedCartUp));
     setCount(count + 1); // Обновляем состояние поля ввода
@@ -38,7 +38,7 @@ const BuyCoffeeItem = (props) => {
 
   const handleCountDown = () => {
     if (props.count <= 1) {
-      return; 
+      return;
     }
     const updatedCartDown = cart.map((item) => {
       if (item.id === props.id) {
@@ -46,13 +46,11 @@ const BuyCoffeeItem = (props) => {
       }
       return item;
     });
-  
+
     localStorage.setItem("cartData", JSON.stringify(updatedCartDown));
     dispatch(updateCart(updatedCartDown));
     setCount(count - 1); // Обновляем состояние поля ввода
   };
-  
-  
 
   return (
     <section className="product">
@@ -69,7 +67,7 @@ const BuyCoffeeItem = (props) => {
               type="number"
               className="count__input"
               min="1"
-              max="100" 
+              max="100"
               value={count}
               onChange={handleCountChange}
             />
@@ -97,7 +95,6 @@ const BuyCoffeeItem = (props) => {
               type="button"
               className="count__down"
               onClick={handleCountDown}
-              
             >
               <svg
                 width="14"

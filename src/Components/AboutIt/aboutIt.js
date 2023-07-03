@@ -9,9 +9,9 @@ import { useEffect } from "react";
 
 import "./aboutIt.scss";
 
-const AboutIt = ({ defsultValues }) => {
+const AboutIt = ({ defsultValues, cart }) => {
   const { coffeeId } = useParams();
-  const cart = useSelector((state) => state.cart.cart);
+
   //достаем cart из Redux-хранилища. Значение cart получается из свойства cart объекта состояния state.cart.
   const navigate = useNavigate();
 
@@ -20,22 +20,21 @@ const AboutIt = ({ defsultValues }) => {
   const selected = defsultValues.find((item) => item.id === Number(coffeeId));
 
   useEffect(() => {
-    if (!selected) navigate("/")
+    if (!selected) navigate("/");
   }, []);
-  
+
   const addToCart = () => {
-    const coffeeExists = cart.find(item => item.id === Number(coffeeId));
-      if (!coffeeExists) {
-        const newCartItems = [...cart, selected];
-          localStorage.setItem("cartData", JSON.stringify(newCartItems));
-          dispatch(updateCart(newCartItems));
+    const coffeeExists = cart.find((item) => item.id === Number(coffeeId));
+    if (!coffeeExists) {
+      const newCartItems = [...cart, selected];
+      localStorage.setItem("cartData", JSON.stringify(newCartItems));
+      dispatch(updateCart(newCartItems));
     }
   };
-//addToCart выполняется при нажатии на кнопку "Buy"
-//внутри функции создается новый массив newCartItems, который содержит текущий cart и выбранный товар selected
-//затем новый массив newCartItems сохраняется в локальное хранилище localStorage
-//и отправляется в Redux-хранилище с помощью функции dispatch(updateCart(newCartItems))
-
+  //addToCart выполняется при нажатии на кнопку "Buy"
+  //внутри функции создается новый массив newCartItems, который содержит текущий cart и выбранный товар selected
+  //затем новый массив newCartItems сохраняется в локальное хранилище localStorage
+  //и отправляется в Redux-хранилище с помощью функции dispatch(updateCart(newCartItems))
 
   return (
     <div className="ourcoffee">
